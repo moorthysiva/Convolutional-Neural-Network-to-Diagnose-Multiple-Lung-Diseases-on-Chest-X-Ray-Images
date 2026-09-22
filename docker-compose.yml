@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    image: chestxray-cad:latest
+    ports:
+      - "8000:8000"
+    environment:
+      # Mount a trained checkpoint and point the service at it.
+      MODEL_CHECKPOINT: /models/best_model.pt
+      IMAGE_SIZE: "224"
+    volumes:
+      - ./artifacts/densenet121_baseline:/models:ro
+    restart: unless-stopped

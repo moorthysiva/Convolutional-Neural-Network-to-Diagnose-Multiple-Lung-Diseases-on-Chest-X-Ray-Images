@@ -1,0 +1,24 @@
+# Data & model artifacts (never commit large binaries or PHI)
+data/
+artifacts/
+*.pt
+*.hdf5
+*.png
+!docs/*.png
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

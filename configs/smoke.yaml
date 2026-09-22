@@ -1,0 +1,28 @@
+# Tiny config for a fast end-to-end smoke run on CPU (few images, 1 epoch).
+seed: 42
+output_dir: artifacts
+experiment_name: smoke
+
+data:
+  data_dir: data
+  entry_csv: Data_Entry_2017.csv
+  image_size: 128
+  min_cases: 100
+  val_fraction: 0.2
+  test_fraction: 0.2
+  num_workers: 0
+
+model:
+  backbone: resnet18
+  pretrained: false
+  dropout: 0.2
+
+train:
+  epochs: 1
+  batch_size: 8
+  lr: 0.001
+  loss: bce
+  sampler: none
+  patience: 1
+  lr_patience: 1
+  amp: false

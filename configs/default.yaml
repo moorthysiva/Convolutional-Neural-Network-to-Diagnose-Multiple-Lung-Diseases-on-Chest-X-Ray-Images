@@ -1,0 +1,33 @@
+seed: 42
+output_dir: artifacts
+experiment_name: densenet121_baseline
+
+data:
+  data_dir: data
+  entry_csv: Data_Entry_2017.csv
+  image_size: 224
+  min_cases: 1000
+  val_fraction: 0.15
+  test_fraction: 0.15
+  official_split_train_val: train_val_list.txt
+  official_split_test: test_list.txt
+  clahe: false               # engineered image feature (CLAHE contrast enhancement)
+  num_workers: 4
+
+model:
+  backbone: densenet121      # CheXNet-style; any timm model name is valid
+  pretrained: true
+  dropout: 0.2
+
+train:
+  epochs: 30
+  batch_size: 32
+  lr: 0.0001
+  weight_decay: 0.00001
+  loss: weighted_bce         # bce | weighted_bce | focal
+  sampler: none              # none | weighted (WeightedRandomSampler for resampling)
+  focal_gamma: 2.0
+  patience: 6
+  lr_patience: 3
+  amp: true
+  monitor: val_auc_macro
